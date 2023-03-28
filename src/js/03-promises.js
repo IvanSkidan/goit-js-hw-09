@@ -31,8 +31,6 @@ function onClick(event) {
   let inputAmount = Number(amount.value);
 
   for (let i = 1; i <= inputAmount; i += 1) {
-    inputDelay += inputStep;
-
     createPromise(i, inputDelay)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -40,6 +38,8 @@ function onClick(event) {
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+    
+    inputDelay += inputStep;
   };
   // form.reset();
 }
